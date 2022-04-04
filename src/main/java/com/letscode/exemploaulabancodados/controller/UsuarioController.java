@@ -5,6 +5,7 @@ import com.letscode.exemploaulabancodados.dto.UsuarioResponse;
 import com.letscode.exemploaulabancodados.models.Usuario;
 import com.letscode.exemploaulabancodados.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,8 +43,10 @@ public class UsuarioController {
     }
 
       @GetMapping
-    public List<Usuario> getAll(@RequestParam(required = false) String nome){
-        return usuarioService.getAll(nome);
+    public Page<Usuario> getAll(@RequestParam(required = false) String nome,
+                                @RequestParam(required = false, defaultValue = "0") int page,
+                                @RequestParam(required = false, defaultValue = "3") int size){
+        return usuarioService.getAll(nome,page,size);
     }
 //
 //    @PostMapping
