@@ -2,6 +2,7 @@ package com.letscode.exemploaulabancodados.models;
 import java.lang.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -52,6 +53,10 @@ public class Conta {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
+
+//    @JsonIgnore
+    @OneToMany(mappedBy = "conta",cascade = CascadeType.ALL)
+    private List<Transacao> transacoes;
 
     public Conta(ContaRequest contaRequest, Usuario usuario) {
         this.numero = contaRequest.getNumero();

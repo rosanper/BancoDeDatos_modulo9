@@ -1,5 +1,6 @@
 package com.letscode.exemploaulabancodados.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.letscode.exemploaulabancodados.dto.TransacaoRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -45,6 +46,17 @@ public class Transacao {
     @Column(name = "data_atualizacao")
     private LocalDateTime dataAtualizacao;
 
-//    private Conta conta;
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "conta_id", referencedColumnName = "id")
+    private Conta conta;
+
+    public Transacao(TransacaoRequest transacaoRequest, Conta conta){
+        this.valor = transacaoRequest.getValor();
+        this.tipoTransacao = transacaoRequest.getTipoTransacao();
+        this.numero = transacaoRequest.getNumero();
+        this.agencia = transacaoRequest.getAgencia();
+        this.conta = conta;
+    }
 
 }
