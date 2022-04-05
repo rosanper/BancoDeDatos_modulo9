@@ -1,6 +1,7 @@
 package com.letscode.exemploaulabancodados.dto;
 
 import com.letscode.exemploaulabancodados.models.TipoTransacao;
+import com.letscode.exemploaulabancodados.models.Transacao;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,13 @@ public class TransacaoResponse {
     private Integer numero;
     private Integer agencia;
 
+    public TransacaoResponse(Transacao transacao){
+        this.id = transacao.getId();
+        this.valor = transacao.getValor();
+        this.tipoTransacao = transacao.getTipoTransacao();
+        this.numero = transacao.getNumero();
+        this.agencia = transacao.getAgencia();
+    }
 
 
 }

@@ -69,7 +69,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         usuarioRepository.save(usuario);
 
-        return null;
+        return usuario;
     }
 
     @Override
