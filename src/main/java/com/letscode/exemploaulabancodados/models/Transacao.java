@@ -47,7 +47,8 @@ public class Transacao {
     private LocalDateTime dataAtualizacao;
 
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL)
+//    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "conta_id", referencedColumnName = "id")
     private Conta conta;
 

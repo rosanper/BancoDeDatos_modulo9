@@ -19,7 +19,7 @@ public class TransacaoRequest {
     private TipoTransacao tipoTransacao;
     private Integer numero;
     private Integer agencia;
-    private LocalDateTime dataCriacao;
-    private LocalDateTime dataAtualizacao;
+//    private LocalDateTime dataCriacao;
+//    private LocalDateTime dataAtualizacao;
 
 }
