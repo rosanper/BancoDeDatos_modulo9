@@ -3,13 +3,18 @@ package com.letscode.exemploaulabancodados.services.impl;
 import com.letscode.exemploaulabancodados.dto.ContaRequest;
 import com.letscode.exemploaulabancodados.dto.ContaResponse;
 import com.letscode.exemploaulabancodados.models.Conta;
+import com.letscode.exemploaulabancodados.models.TipoConta;
 import com.letscode.exemploaulabancodados.models.Usuario;
+import com.letscode.exemploaulabancodados.projection.ContaView;
 import com.letscode.exemploaulabancodados.repositories.ContaRepository;
 import com.letscode.exemploaulabancodados.repositories.UsuarioRepository;
 import com.letscode.exemploaulabancodados.services.ContaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -59,5 +64,30 @@ public class ContaServiceImpl implements ContaService {
     public void delete(Integer id) {       // corrigir - Também está deletando o usuario
         Conta conta = getById(id);
         contaRepository.delete(conta);
+    }
+
+    @Override
+    public List<Conta> getByUsuario(String cpf, String nome, Integer agencia) {
+        return null;
+//        return contaRepository.findByUsuarioCpfOrUsuarioNomeAndAgencia(cpf,nome,agencia);
+    }
+
+    @Override
+    public Page<Conta> getContasSaldoGreaterThan(BigDecimal valor, int page, int size) {
+        PageRequest pageRequest = PageRequest.of(page,size);
+        return contaRepository.findBySaldoGreaterThan(valor,pageRequest);
+    }
+
+    @Override
+    public List<ContaView> getByTipoConta(TipoConta tipoConta){
+        return contaRepository.findByTipoContaOrderByDataCriacao(tipoConta);
+    }
+
+//    public List<Conta> teste(Integer agencia, Integer numero){
+//        return contaRepository.findByAgenciaOrNumero(agencia, numero);
+//    }
+
+    public List<Conta> getByQuery(TipoConta tipoConta, String nome){
+        return contaRepository.findByTipoContaAndUsuarioName(tipoConta, nome);
     }
 }
