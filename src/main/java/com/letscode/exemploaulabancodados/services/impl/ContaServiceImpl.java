@@ -61,15 +61,9 @@ public class ContaServiceImpl implements ContaService {
     }
 
     @Override
-    public void delete(Integer id) {       // corrigir - Também está deletando o usuario
+    public void delete(Integer id) {
         Conta conta = getById(id);
         contaRepository.delete(conta);
-    }
-
-    @Override
-    public List<Conta> getByUsuario(String cpf, String nome, Integer agencia) {
-        return null;
-//        return contaRepository.findByUsuarioCpfOrUsuarioNomeAndAgencia(cpf,nome,agencia);
     }
 
     @Override

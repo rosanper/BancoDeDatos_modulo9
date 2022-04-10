@@ -16,7 +16,6 @@ public interface ContaService {
     Conta getById(Integer id);
     Conta update(ContaRequest contaRequest, Integer id);
     void delete(Integer id);
-    List<Conta> getByUsuario(String cpf, String nome, Integer agencia);
     Page<Conta> getContasSaldoGreaterThan(BigDecimal bigDecimal, int page, int size);
 
     List<ContaView> getByTipoConta(TipoConta tipoConta);

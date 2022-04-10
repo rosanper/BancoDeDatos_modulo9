@@ -17,11 +17,6 @@ public class UsuarioController {
     @Autowired
     UsuarioService usuarioService;
 
-//    @GetMapping
-//    public List<UsuarioResponse> getAll(){
-//        return usuarioService.getAll();
-//    }
-
     @PostMapping
     public UsuarioResponse create(@RequestBody UsuarioRequest usuarioRequest){
         return usuarioService.create(usuarioRequest);
@@ -48,10 +43,5 @@ public class UsuarioController {
                                 @RequestParam(required = false, defaultValue = "3") int size){
         return usuarioService.getAll(nome,page,size);
     }
-//
-//    @PostMapping
-//    public Usuario create(@RequestBody UsuarioRequest usuarioRequest){
-//        return usuarioService.create(usuarioRequest);
-//    }
 
 }

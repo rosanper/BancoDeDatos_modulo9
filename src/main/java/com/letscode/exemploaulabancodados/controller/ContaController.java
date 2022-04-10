@@ -46,16 +46,6 @@ public class ContaController {
         contaService.delete(id);
     }
 
-    @GetMapping("/contasQuery")  // com erro
-    private List<Conta> getByUsuario(@RequestParam(required = false, defaultValue = "") String cpf,
-                                             @RequestParam(required = false, defaultValue = "") String nome,
-                                             @RequestParam (required = false, defaultValue = "")Integer agencia){
-        return contaService.getByUsuario(cpf, nome, agencia);
-//        List<Conta> contas = contaService.getByUsuario(cpf, nome, agencia);
-//        return contas.stream().map(conta -> new ContaResponse(conta)).collect(Collectors.toList());
-
-    }
-
     @GetMapping("/Query")
     private List<Conta> getByTipoContaENomeUsuario(@RequestParam String nome,
                                                    @RequestParam TipoConta tipoConta){

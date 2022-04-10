@@ -15,26 +15,12 @@ import java.util.List;
 
 @Repository
 public interface ContaRepository extends JpaRepository<Conta,Integer> {
-//    List<Conta> findBySaldoLessThan(BigDecimal saldo);
-//    List<Conta> findBySaldoLessThanEqual(BigDecimal saldo);
-//    List<Conta> findBySaldoGreaterThan(BigDecimal saldo);
-//    List<Conta> findBySaldoGreaterThanEqual(BigDecimal saldo);
-//
-//    boolean existsByTipoConta(TipoConta tipoConta);
 
     List<Conta> findByAgenciaOrNumero(Integer agencia, Integer numero);
 
     Page<Conta> findBySaldoGreaterThan(BigDecimal saldo, Pageable pageRequest);
 
     List<ContaView> findByTipoContaOrderByDataCriacao(TipoConta tipoConta);
-
-//    Refazer
-//    @Query("select c from Conta c" +
-//             "where c.usuario.cpf = :cpf"
-//            + "or (c.usuario.nome = :nome and c.agencia = :agencia)")
-//    List<Conta> findByUsuarioCpfOrUsuarioNomeAndAgencia(@Param("cpf") String cpf,
-//                                                          @Param("nome") String nome,
-//                                                          @Param("agencia") Integer agencia );
 
     @Query("select c from Conta c " +
             "where c.tipoConta = :tipoConta and c.usuario.nome = :nome")
