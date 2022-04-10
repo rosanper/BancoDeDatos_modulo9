@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,7 +23,7 @@ public class ContaController {
     private ContaServiceImpl contaService;
 
     @PostMapping("/create/{id}")
-    private ContaResponse create(@PathVariable Integer id,@RequestBody ContaRequest contaRequest){
+    private ContaResponse create(@PathVariable Integer id,@RequestBody @Valid ContaRequest contaRequest){
         return contaService.create(id,contaRequest);
     }
 
@@ -37,7 +38,7 @@ public class ContaController {
     }
 
     @PutMapping("/{id}")
-    private ContaResponse update(@PathVariable Integer id, @RequestBody ContaRequest contaRequest){
+    private ContaResponse update(@PathVariable Integer id, @RequestBody @Valid ContaRequest contaRequest){
         return new ContaResponse(contaService.update(contaRequest,id));
     }
 

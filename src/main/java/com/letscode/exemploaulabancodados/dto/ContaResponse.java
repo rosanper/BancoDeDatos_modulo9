@@ -35,7 +35,7 @@ public class ContaResponse {
         this.dataCriacao = conta.getDataCriacao();
         this.dataAtualizacao = conta.getDataAtualizacao();
         this.usuario = new UsuarioResponse(conta.getUsuario());
-        this.transacoes = conta.getTransacoes().stream()
+        this.transacoes = (conta.getTransacoes() == null) ? null : conta.getTransacoes().stream()
                 .map(transacao -> new TransacaoResponse(transacao)).collect(Collectors.toList());
     }
 }

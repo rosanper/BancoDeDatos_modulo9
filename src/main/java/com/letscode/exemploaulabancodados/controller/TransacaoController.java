@@ -7,6 +7,7 @@ import com.letscode.exemploaulabancodados.services.impl.TransacaoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -22,7 +23,7 @@ public class TransacaoController {
     }
 
     @PostMapping("/create")
-    public TransacaoResponse create(@RequestParam Integer id, @RequestBody TransacaoRequest transacaoRequest){
+    public TransacaoResponse create(@RequestParam Integer id, @RequestBody @Valid TransacaoRequest transacaoRequest){
         return new TransacaoResponse(transacaoService.create(id,transacaoRequest));
     }
 

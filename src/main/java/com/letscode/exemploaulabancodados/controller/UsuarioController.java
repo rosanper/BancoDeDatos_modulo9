@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -18,7 +19,7 @@ public class UsuarioController {
     UsuarioService usuarioService;
 
     @PostMapping
-    public UsuarioResponse create(@RequestBody UsuarioRequest usuarioRequest){
+    public UsuarioResponse create(@RequestBody @Valid UsuarioRequest usuarioRequest){
         return usuarioService.create(usuarioRequest);
     }
 
@@ -28,7 +29,7 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    public Usuario update(@PathVariable Integer id, @RequestBody UsuarioRequest usuarioRequest){
+    public Usuario update(@PathVariable Integer id, @RequestBody @Valid UsuarioRequest usuarioRequest){
         return usuarioService.update(usuarioRequest,id);
     }
 
