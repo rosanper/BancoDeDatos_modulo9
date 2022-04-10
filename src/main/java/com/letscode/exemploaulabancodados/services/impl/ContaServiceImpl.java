@@ -2,6 +2,7 @@ package com.letscode.exemploaulabancodados.services.impl;
 
 import com.letscode.exemploaulabancodados.dto.ContaRequest;
 import com.letscode.exemploaulabancodados.dto.ContaResponse;
+import com.letscode.exemploaulabancodados.exceptions.ErroNotFind;
 import com.letscode.exemploaulabancodados.models.Conta;
 import com.letscode.exemploaulabancodados.models.TipoConta;
 import com.letscode.exemploaulabancodados.models.Usuario;
@@ -43,7 +44,8 @@ public class ContaServiceImpl implements ContaService {
 
     @Override
     public Conta getById(Integer id) {
-        return contaRepository.findById(id).orElseThrow(); // criar exception
+        return contaRepository.findById(id)
+                .orElseThrow(() -> new ErroNotFind("Não existe Conta com esse id"));
     }
 
     @Override
@@ -53,7 +55,7 @@ public class ContaServiceImpl implements ContaService {
         conta.setTipoConta(contaRequest.getTipoConta());
         conta.setNumero(contaRequest.getNumero());
         conta.setSaldo(contaRequest.getSaldo());
-        conta.setDataAtualizacao(LocalDateTime.now());  //Ajustar a data de atualizacao nos outros services tbm.
+        conta.setDataAtualizacao(LocalDateTime.now());
 
         contaRepository.save(conta);
 

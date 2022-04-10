@@ -24,7 +24,7 @@ public class ContaRequest {
     @NotNull(message = "O número não pode ser nulo")
     private BigDecimal saldo;
 
-    @NotBlank(message = "O tipo de transação não pode ser nulo nem branco")
+    @NotNull(message = "O tipo de transação não pode ser nulo")
     private TipoConta tipoConta;
 
 }

@@ -1,6 +1,7 @@
 package com.letscode.exemploaulabancodados.services.impl;
 
 import com.letscode.exemploaulabancodados.dto.TransacaoRequest;
+import com.letscode.exemploaulabancodados.exceptions.ErroNotFind;
 import com.letscode.exemploaulabancodados.models.Conta;
 import com.letscode.exemploaulabancodados.models.Transacao;
 import com.letscode.exemploaulabancodados.repositories.TransacaoRepository;
@@ -26,7 +27,8 @@ public class TransacaoServiceImpl implements TransacaoService {
 
     @Override
     public Transacao getById(Integer id){
-        return transacaoRepository.findById(id).orElseThrow();
+        return transacaoRepository.findById(id)
+                .orElseThrow(() -> new ErroNotFind("Não existe Transação com esse id"));
     }
 
     @Override
